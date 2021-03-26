@@ -1,2 +1,133 @@
 
-gtbfbdbd
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Maquina_Dispensadora
+{
+    class Program
+    {
+
+        static void Venta(int exist, string nom, int prec, int dinero)
+        {
+            Producto producto = new Producto();
+
+            if (exist != 0)
+            {
+                if (dinero >= prec)
+                {
+                    dinero = dinero - prec;
+                    exist = exist - 1;
+                    Console.Clear();
+                    Console.WriteLine("DINERO QUE LE RESTA ES : " + dinero);
+                    Console.WriteLine("USTED COMPRO: " + nom);
+                    Console.WriteLine("AUN HAY {0} PRODUCTOS DE '{1}' ", exist, nom);
+
+
+
+                }
+                else
+                {
+                    Console.WriteLine("NO TIENE DINERO");
+                }
+            }
+            else
+            {
+                Console.WriteLine("AGOTADO");
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+            var producto = new Producto[10];
+            producto[0] = new Producto { name = "GATORADE", Precio = 50, disponible = 10 };
+            producto[1] = new Producto { name = "REFRESCO", Precio = 25, disponible = 10 };
+            producto[2] = new Producto { name = "AGUA", Precio = 20, disponible = 10 };
+            producto[3] = new Producto { name = "PAPITA", Precio = 25, disponible = 10 };
+            producto[4] = new Producto { name = "JUGOS", Precio = 30, disponible = 10 };
+            producto[5] = new Producto { name = "MALTA", Precio = 45, disponible = 10 };
+            producto[6] = new Producto { name = "V8SPLASH", Precio = 80, disponible = 10 };
+            producto[7] = new Producto { name = "DINO", Precio = 10, disponible = 10 };
+            producto[8] = new Producto { name = "HOJUELAS", Precio = 25, disponible = 10 };
+            producto[9] = new Producto { name = "MANI", Precio = 10, disponible = 10 };
+
+
+            Console.WriteLine("POR FAVOR INTRUCIR DINERO SOLO ADMITIMOS MONEDAS 5, 10 Y 25 Y SOLO RECIBIMOS BILLETE DE 50, 100, 200");
+            int Dinero = int.Parse(Console.ReadLine());
+
+            if (Dinero == 5 || Dinero == 10 || Dinero == 25 || Dinero == 50 || Dinero == 100 || Dinero == 200)
+            {
+                Console.Clear();
+                Console.WriteLine("DISPONIBLE: " + Dinero);
+            }
+            else
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine(" SOLO ADMITIMOS MONEDAS 5, 10 Y 25 Y SOLO RECIBIMOS BILLETE DE 50, 100, 200", Dinero);
+                    Dinero = int.Parse(Console.ReadLine());
+
+                } while (Dinero == 5 || Dinero == 10 || Dinero == 25 || Dinero == 50 || Dinero == 100 || Dinero == 200);
+            }
+
+            Console.WriteLine("Nuestros Productos son: \n1) GATORADE. \n2) REFRESCO. \n3) AGUA. \n4) PAPITA. \n5) JUGOS. \n6) MALTA. \n7) V8SPLASH. \n8) DINO. \n9) HOJUELAS. \n10) MANI.");
+            int Product = int.Parse(Console.ReadLine());
+
+
+            switch (Product)
+            {
+                case 1:
+                    Venta(Dinero, producto[0].name, producto[0].Precio, producto[0].disponible);
+                    break;
+                case 2:
+                    Venta(Dinero, producto[1].name, producto[1].Precio, producto[1].disponible);
+                    break;
+                case 3:
+                    Venta(Dinero, producto[2].name, producto[2].Precio, producto[2].disponible);
+                    break;
+                case 4:
+                    Venta(Dinero, producto[3].name, producto[3].Precio, producto[3].disponible);
+                    break;
+                case 5:
+                    Venta(Dinero, producto[4].name, producto[4].Precio, producto[4].disponible);
+                    break;
+                case 6:
+                    Venta(Dinero, producto[5].name, producto[5].Precio, producto[5].disponible);
+                    break;
+                case 7:
+                    Venta(Dinero, producto[6].name, producto[6].Precio, producto[6].disponible);
+                    break;
+                case 8:
+                    Venta(Dinero, producto[7].name, producto[7].Precio, producto[7].disponible);
+                    break;
+                case 9:
+                    Venta(Dinero, producto[8].name, producto[8].Precio, producto[8].disponible);
+                    break;
+                case 10:
+                    Venta(Dinero, producto[9].name, producto[9].Precio, producto[9].disponible);
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("ELEGIR LOS PRODUCTOS QUE ESTAN ENTRE 1 Y 10");
+                    break;
+
+            }
+            Console.ReadKey();
+        }
+    }
+
+    class Producto
+    {
+        public string name { get; set; }
+        public int Precio { get; set; }
+        public int disponible { get; set; }
+
+
+
+    }
+}
