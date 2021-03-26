@@ -1,0 +1,76 @@
+
+using System;
+
+namespace parcial
+{
+    class empleadosss
+    {
+        string nom { get; set; }
+        int Edad { get; set; }
+        double sueldo { get; set; }
+        static empleadosss[] empleado;
+
+        public static void Cargar()
+        {
+            empleado = new empleadosss[5];
+
+            for (int i = 0; i < empleado.Length; i++)
+            {
+                try
+                {
+                    empleado[i] = new empleadosss();
+                    Console.Write("Ingresa el nombre del empleado {0}:  ", i + 1);
+                    empleado[i].nom = Console.ReadLine();
+                    Console.Write("Ingresa el sueldo {0}  :", i + 1);
+                    empleado[i].sueldo = double.Parse(Console.ReadLine());
+                    Console.Clear();
+                }
+ 
+                catch (Exception)
+            {
+
+                throw new Exception(" ");
+            }
+        }
+        }
+
+        public static void SalarioMayor()
+        {
+
+            if (empleado != null)
+            {
+                double mayor = empleado[0].sueldo;
+                string emplenombre = empleado[0].nom;
+
+                for (int i = 1; i < empleado.Length; i++)
+                {
+                    if (empleado[i].sueldo > mayor)
+                    {
+                        mayor = empleado[i].sueldo;
+                        emplenombre = empleado[i].nom;
+                    }
+                }
+
+                Console.WriteLine("El empelado con el salario mayor es {0} ", emplenombre);
+                Console.WriteLine("Tiene un salario de {0}", mayor);
+            }
+            else
+            {
+                throw new Exception(" ");
+            }
+
+
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            empleadosss.Cargar();
+
+            empleadosss.SalarioMayor();
+
+        }
+    }
+}
